@@ -41,12 +41,12 @@ def main():
     list_student_with_average_greater_5 = [student for student in listStudent if student.get_average() > 5]
     print("Sinh vien co diem trung binh lon hon 5")
     for student in list_student_with_average_greater_5:
-        print(f"{student.get_name()}, {student.get_average()}")
+        print(f"Ten: {student.get_name()}, DTB: {student.get_average()}")
 
     print("Sinh vien co diem hoa nho hon 5")
     list_student_with_chemistry = [student for student in listStudent if student.get_chemistry_score() < 5]
     for student in list_student_with_chemistry:
-        print(f"{student.get_name()}, {student.get_chemistry_score()}")
+        print(f"Ten: {student.get_name()}, Diem Hoa: {student.get_chemistry_score()}")
 
 
 
