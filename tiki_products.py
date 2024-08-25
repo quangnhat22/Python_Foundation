@@ -23,53 +23,53 @@ tiki_products = [
 ]
 
 def get_products():
+    global tiki_products
     for product in tiki_products:
         print(product)
 
 def add_new_product():
-    name = input("Name: ")
-    price = float(input("Price: "))
-    desc = input("Description: ")
-
+    name = input("Ten: ")
+    price = float(input("Gia tien: "))
+    desc = input("Mieu ta: ")
+    global tiki_products
     new_product = {
         "id": len(tiki_products) + 1,
         "name": name,
         "price": price,
         "desc": desc,
+        "img": f"https://fastly.picsum.photos/id/1/200/300"
     }
-
     tiki_products.append(new_product)
 
 def search_product():
     search_name = input("Nhap ten san pham ban muon tim kiem: ")
+    global tiki_products
     for product in tiki_products:
         if search_name.lower() in product["name"].lower():
             print(
-                f"Found: {product["id"]}, {product['name']}, {product['price']}, {product['desc']}")
+                f"Da tim thay: {product["id"]}, {product['name']}, {product['price']}, {product['desc']}")
             return product
-        else:
-            print(
-                "Khong tim thay")
-            return None
+    print(
+        "Khong tim thay")
+    return None
 
 def delete_product():
     product_founded = search_product()
+    global tiki_products
     if product_founded:
-         products = [product for product in tiki_products if product["id"] != product_founded["id"]]
-         print("Mang sau khi xoa phan tu vua nhap:   ")
-         for i in products:
-            print(f"{i['id']}, {i['name']}, {i['price']}, {i['desc']}")
-
-
+         tiki_products = [product for product in tiki_products if product["id"] != product_founded["id"]]
+         print("Xoa thanh cong")
+    else:
+        print("Xoa that bai")
 
 def edit_product():
     product_founded = search_product()
     if product_founded:
         for product in tiki_products:
             if product["id"] == product_founded["id"]:
-                product["name"] = input("Name edit: ")
-                product["price"] = int(input("Price edit: "))
-                product["desc"] = input("Description edit: ")
+                product["name"] = input("Ten can sua: ")
+                product["price"] = int(input("Gia can sua: "))
+                product["desc"] = input("Mo ta: ")
                 print("Mang sau khi xoa phan tu vua nhap:   ")
                 for i in tiki_products:
                     print(f"{i['id']}, {i['name']}, {i['price']}, {i['desc']}")
@@ -99,10 +99,10 @@ def main():
             elif choice == 5:
                 search_product()
             elif choice == 6:
-                print("Existing...")
+                print("Thoat...")
                 break
             else:
-                print("Invalid choice")
+                print("Lua chon khong hop le!")
         except Exception as e:
             print(e)
 
