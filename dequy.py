@@ -36,6 +36,19 @@ def find_max_in_array(array, max, index):
     return find_max_in_array(array, max, index + 1)
 
 
+# binary_search_recursion
+def binary_search_recursion(number, listNumber, start, end):
+    if start > end:
+        return -1
+    mid = start + (end - start) // 2
+    if listNumber[mid] == number:
+        return mid
+    elif listNumber[mid] > number:
+        return binary_search_recursion(number, listNumber, start, mid)
+    else:
+        return binary_search_recursion(number, listNumber, mid + 1, end)
+
+
 def main():
     input = '123 456    '
     print(reverse_string(input))
